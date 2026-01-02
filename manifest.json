@@ -1,10 +1,10 @@
 {
-  "id": "game-search",
-  "name": "Game Search",
-  "version": "0.2.14",
+  "id": "game-search-olinbg",
+  "name": "Game Search (olinbg)",
+  "version": "0.1.0",
   "minAppVersion": "0.15.0",
   "description": "Helps you find games and create notes. Optional Steam Library Sync",
-  "author": "Calvin forked from anpigon",
-  "authorUrl": "https://calvins.pizza",
+  "author": "olinbg",
+  "authorUrl": "https://olinbg.com",
   "isDesktopOnly": false
 }

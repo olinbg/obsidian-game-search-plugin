@@ -49,7 +49,9 @@ export default class GameSearchPlugin extends Plugin {
     }
 
     // This creates an icon in the left ribbon.
-    const ribbonIconEl = this.addRibbonIcon('gamepad-2', 'Create new game note', () => this.createNewGameNote(null)); // passing null/undefined for params here will force user to game search
+    const ribbonIconEl = this.addRibbonIcon('gamepad-2', 'Create new game note', () =>
+      this.createNewGameNote(null, this.settings.openNewNote, null),
+    ); // passing null/undefined for params here will force user to game search
     // Perform additional things with the ribbon
     ribbonIconEl.addClass('obsidian-game-search-plugin-ribbon-class');
 
@@ -57,7 +59,7 @@ export default class GameSearchPlugin extends Plugin {
     this.addCommand({
       id: 'open-game-search-modal',
       name: 'Create new game note',
-      callback: () => this.createNewGameNote(undefined), // passing null/undefined for params here will force user to game search
+      callback: () => this.createNewGameNote(null, this.settings.openNewNote, null), // passing null/undefined for params here will force user to game search
     });
 
     this.addCommand({

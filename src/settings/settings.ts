@@ -11,6 +11,7 @@ export interface GameSearchPluginSettings {
   folder: string; // new file location
   fileNameFormat: string; // new file name format
   templateFile: string;
+  openNewNote: boolean;
   rawgApiKey: string;
   steamApiKey: Nullable<string>;
   steamUserId: Nullable<string>;
@@ -25,6 +26,7 @@ export const DEFAULT_SETTINGS: GameSearchPluginSettings = {
   folder: '',
   fileNameFormat: '',
   templateFile: '',
+  openNewNote: false,
   rawgApiKey: '',
   steamApiKey: null,
   steamUserId: null,
@@ -134,6 +136,21 @@ export class GameSearchSettingTab extends PluginSettingTab {
             this.plugin.settings.templateFile = newTemplateFile;
             this.plugin.saveSettings();
           });
+      });
+
+    // Steam sync on start
+    const openNewNoteDescription = document.createDocumentFragment();
+    openNewNoteDescription.createDiv({ text: 'Enable or disable opening the note after creation' });
+    new Setting(containerEl)
+      .setName('Open new game note')
+      .setDesc(openNewNoteDescription)
+      .addToggle(toggle => {
+        const prevValue = this.plugin.settings.openNewNote;
+        toggle.setValue(prevValue).onChange(async value => {
+          const newValue = value;
+          this.plugin.settings.openNewNote = newValue;
+          await this.plugin.saveSettings();
+        });
       });
 
     createHeader(containerEl, 'Steam Settings');
